@@ -1,7 +1,14 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { DUMMY_IMAGE } from 'src/app/modules/user-form/image.constants';
+
+const customValidatorForAge = (control: AbstractControl): ValidationErrors => {
+  return control.value >= 25 && control.value <= 65
+    ? {}
+    : { invalidAge: true };
+};
 
 @Component({
   selector: 'app-user-form',
@@ -20,9 +27,9 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   readonly educationControl = new FormArray([
     this.createEducationItemControl(),
   ]);
-  readonly ageControl = new FormControl('', [Validators.required]);
+  readonly ageControl = new FormControl(25, [Validators.required, customValidatorForAge]);
   readonly idControl = new FormControl(Math.floor(Math.random() * 10000).toString());
-  readonly imageControl = new FormControl('');
+  readonly imageControl = new FormControl(DUMMY_IMAGE);
 
   readonly userFormGroup = new FormGroup({
     id: this.idControl,
@@ -37,6 +44,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly userService: UserService,
     private readonly changeDetectorRef: ChangeDetectorRef,
   ) {
@@ -75,12 +83,17 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       this.reader.result,
     ));
 
-    if (!this.create) {
-      this.userService.findById(this.id)
-        .subscribe(user => {
-          this.userFormGroup.setValue(user!);
-          this.changeDetectorRef.detectChanges();
-        });
+    if (this.edit) {
+      this.userService.findById(this.id).subscribe(user => {
+        this.educationControl.removeAt(0);
+
+        for (let i = 0; i < user!.education.length; i++) {
+          this.educationControl.push(this.createEducationItemControl());
+        }
+
+        this.userFormGroup.setValue(user!);
+        this.changeDetectorRef.detectChanges();
+      });
     }
   }
 
@@ -101,18 +114,21 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   saveUser(): void {
     if (this.edit) {
       this.userService.updateUser(this.id, this.userFormGroup.value)
-        .subscribe(() => {
-        });
+        .subscribe(() => this.navigateToDetailsPage(this.id));
     }
 
     if (this.create) {
-      this.userService.createUser(this.userFormGroup.value).subscribe(() => {
-      });
+      this.userService.createUser(this.userFormGroup.value)
+        .subscribe(user => this.navigateToDetailsPage(user.id));
     }
   }
 
   openFileDialog(): void {
     this.imageInput.nativeElement.click();
+  }
+
+  private navigateToDetailsPage(id: string): void {
+    this.router.navigate(['details', id]);
   }
 
   private getEducationGroup(index: number): FormGroup {

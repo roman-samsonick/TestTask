@@ -2,15 +2,17 @@
   {{ 'deleteUserConfirmation' | translate }}
 </div>
 
-<div>
-  <button (click)="confirm()">
+<div class="user-delete-confirmation__actions">
+  <button mat-stroked-button
+          (click)="confirm()">
     <mat-icon>
       done
     </mat-icon>
     {{ 'confirm' | translate }}
   </button>
 
-  <button (click)="close()">
+  <button mat-stroked-button
+          (click)="close()">
     <mat-icon>
       close
     </mat-icon>

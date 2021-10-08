@@ -12,6 +12,10 @@ export class LoadingOverlayInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.body?.onlineTime || req.method === 'GET') {
+      return next.handle(req);
+    }
+
     this.loadingOverlayService.addLoading();
 
     return next.handle(req).pipe(

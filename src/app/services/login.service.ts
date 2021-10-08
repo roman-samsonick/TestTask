@@ -32,6 +32,10 @@ export class LoginService {
     );
   }
 
+  logout(): void {
+    localStorage.removeItem('username');
+  }
+
   restoreUser(): Observable<IUser> {
     const username = localStorage.getItem('username');
 

@@ -12,7 +12,8 @@ import { RouterModule } from '@angular/router';
 import { UserDeleteConfirmationComponent } from './user-list/user-delete-confirmation/user-delete-confirmation.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { UserOnlineModule } from 'src/app/directives/user-online.module';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
     UserListComponent,
     UserDetailsComponent,
     ShortNamePipe,
-    UserDeleteConfirmationComponent
+    UserDeleteConfirmationComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +33,9 @@ import { MatCardModule } from '@angular/material/card';
     RouterModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
+    UserOnlineModule,
   ],
 })
-export class UserOverviewModule { }
+export class UserOverviewModule {
+}

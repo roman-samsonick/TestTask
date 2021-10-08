@@ -7,7 +7,6 @@ export class LoadingOverlayService {
   private isLoadingState = new BehaviorSubject(0);
 
   addLoading(): void {
-    console.log(this.isLoadingState);
     this.isLoadingState.next(this.isLoadingState.value + 1);
   }
 

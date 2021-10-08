@@ -6,6 +6,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UserSearchModule } from 'src/app/modules/user-search/user-search.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -20,6 +22,8 @@ import { RouterModule } from '@angular/router';
     TranslateModule,
     ReactiveFormsModule,
     RouterModule,
+    UserSearchModule,
+    MatIconModule,
   ],
   exports: [
     LayoutComponent,

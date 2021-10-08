@@ -14,6 +14,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private readonly route: ActivatedRoute,
+    private readonly router:Router
   ) {
   }
 
@@ -25,4 +26,7 @@ export class UserDetailsComponent implements OnInit {
     this.userService.findById(this.id).subscribe(user => this.user = user!);
   }
 
+  returnToUserList():void{
+    this.router.navigate(['']);
+  }
 }

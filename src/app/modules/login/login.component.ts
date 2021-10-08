@@ -13,8 +13,6 @@ import { first } from 'rxjs/operators';
 export class LoginComponent {
   readonly usernameControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(15),
   ]);
 
   constructor(

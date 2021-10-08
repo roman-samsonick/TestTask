@@ -14,4 +14,5 @@ export interface IUser {
   readonly lastName: string;
   readonly education: IEducation[];
   readonly age: number;
+  readonly onlineTime: string;
 }

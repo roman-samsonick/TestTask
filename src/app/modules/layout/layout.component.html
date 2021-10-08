@@ -1,6 +1,8 @@
 <mat-toolbar class="layout__toolbar">
   <div class="layout__logo" routerLink="/">REGISTRY</div>
-  <div>
+  <div class="layout__actions">
+    <app-user-search class="layout__search"></app-user-search>
+
     <div class="layout__lang-slider">
       <img [alt]="'english' | translate"
            src="assets/images/english.png">
@@ -10,6 +12,10 @@
       <img [alt]="'french' | translate"
            src="assets/images/french.png">
     </div>
+
+    <mat-icon class="layout__actions-logout-button" (click)="logout()">
+      logout
+    </mat-icon>
   </div>
 </mat-toolbar>
 <main class="layout__content">

@@ -1,5 +1,10 @@
 <mat-card *ngIf="user">
-  <div class="user-details__primary-info">
+  <mat-icon  class="user-details__return-button" (click)="returnToUserList()">
+    keyboard_backspace
+  </mat-icon>
+
+  <div [online]="user"
+       class="user-details__primary-info">
     <img class="user-details__avatar"
          [src]="user.image"
          [alt]="user.firstName">
@@ -65,6 +70,4 @@
       {{education.speciality}}
     </div>
   </mat-card>
-
-
 </mat-card>

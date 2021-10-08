@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -14,6 +17,9 @@ export class LayoutComponent {
 
   constructor(
     private readonly translateService: TranslateService,
+    private readonly toastService: ToastrService,
+    private readonly loginService: LoginService,
+    private readonly router: Router,
   ) {
   }
 
@@ -22,5 +28,16 @@ export class LayoutComponent {
       isFrench ? 'fr' : 'en',
     );
     localStorage.setItem('lang', this.translateService.currentLang);
+
+    const message = isFrench
+      ? this.translateService.instant('langChangedToFr')
+      : this.translateService.instant('langChangedToEn');
+
+    this.toastService.success(message);
+  }
+
+  logout(): void {
+    this.loginService.logout();
+    this.router.navigate(['login']);
   }
 }

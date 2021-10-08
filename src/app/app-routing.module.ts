@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/app/modules/login/login.component';
 import { LoginModule } from 'src/app/modules/login/login.module';
 import { LoginGuard } from 'src/app/guards/login.guard';
+import { AdminGuard } from 'src/app/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'admin',
+        canActivate: [AdminGuard],
         loadChildren: () => import('./modules/user-form/user-form-routing.module')
           .then(m => m.UserFormRoutingModule),
       },
@@ -33,6 +35,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
-  providers: [LoginGuard],
+  providers: [LoginGuard, AdminGuard],
 })
 export class AppRoutingModule { }

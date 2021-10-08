@@ -35,6 +35,25 @@ export class UserService {
     })));
   }
 
+  updateOnlineTime(id: string): void {
+    this.httpClient.patch(`${this.apiUrl}/${id}`, { onlineTime: new Date() })
+      .subscribe();
+  }
+
+  findByPartialName(firstName?: string, lastName?: string): Observable<IUser[]> {
+    const searchParams = {} as any;
+
+    if (lastName) {
+      searchParams.lastName_like = lastName;
+    }
+
+    if (firstName) {
+      searchParams.firstName_like = firstName
+    }
+
+    return this.httpClient.get<IUser[]>(this.apiUrl, { params: searchParams });
+  }
+
   findByUsername(username: string): Observable<IUser | null> {
     return this.findUser({ username });
   }
