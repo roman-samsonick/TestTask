@@ -1,0 +1,83 @@
+.user-form__education-institute
+  position: relative
+  display: flex
+  flex-direction: column
+  margin-top: 10px
+  background-color: #505050
+
+.user-form__title
+  margin-bottom: 15px
+  font-size: 25px
+
+.user-form__field-row
+  display: flex
+  flex-direction: row
+
+  > *
+    flex-grow: 1
+
+  \:first-child
+    margin-right: 10px
+
+.user-form__education-institute-remove-button
+  position: absolute
+  border-radius: 50%
+  background-color: #cc4d4d
+  right: -10px
+  top: -10px
+  cursor: pointer
+
+.user-form
+  max-width: 600px
+  display: flex
+  flex-direction: column
+
+\:host
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  padding-top: 100px
+  padding-bottom: 100px
+
+.user-form__append
+  margin-top: 10px
+  border-style: dashed
+  border-width: 2px
+  border-color: #9f9b9b
+  background-color: #505050
+  display: flex
+  flex-direction: row
+  justify-content: center
+  cursor: pointer
+  user-select: none
+
+.user-form__save-button
+  margin-top: 10px
+  display: flex
+  flex-direction: row
+
+  \:first-child
+    margin-right: 10px
+
+  > *
+    flex-grow: 1
+
+.user-form__image-input
+  visibility: hidden
+  height: 0
+  width: 0
+
+.user-form__image-element
+  width: 100%
+  height: 200px
+  margin-bottom: 20px
+  cursor: pointer
+  border-radius: 3px
+
+.user-form__image-tip
+  display: flex
+  flex-direction: row
+  justify-content: flex-end
+  align-items: center
+  margin-bottom: 10px

@@ -1,0 +1,19 @@
+<div>
+  {{ 'deleteUserConfirmation' | translate }}
+</div>
+
+<div>
+  <button (click)="confirm()">
+    <mat-icon>
+      done
+    </mat-icon>
+    {{ 'confirm' | translate }}
+  </button>
+
+  <button (click)="close()">
+    <mat-icon>
+      close
+    </mat-icon>
+    {{ 'cancel' | translate }}
+  </button>
+</div>

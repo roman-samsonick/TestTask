@@ -1,0 +1,18 @@
+<mat-card>
+  <div class="login">
+    <div class="login__title">
+      {{'loginTitle' | translate}}
+    </div>
+
+    <app-form-field class="login__username"
+                    [control]="usernameControl"
+                    [title]="'username' | translate"
+                    [placeholder]="'username' | translate"></app-form-field>
+
+    <button mat-button
+            [disabled]="usernameControl.invalid"
+            (click)="login()">
+      {{'login' | translate}}
+    </button>
+  </div>
+</mat-card>

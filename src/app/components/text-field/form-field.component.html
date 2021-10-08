@@ -1,0 +1,14 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{title}}</mat-label>
+  <input matInput
+         [type]="type"
+         [placeholder]="placeholder"
+         [formControl]="control">
+  <mat-icon *ngIf="suffixIcon"
+            matSuffix>
+    {{suffixIcon}}
+  </mat-icon>
+  <mat-error *ngIf="control.invalid">
+    {{errors}}
+  </mat-error>
+</mat-form-field>

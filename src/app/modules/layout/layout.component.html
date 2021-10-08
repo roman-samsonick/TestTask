@@ -1,0 +1,17 @@
+<mat-toolbar class="layout__toolbar">
+  <div class="layout__logo" routerLink="/">REGISTRY</div>
+  <div>
+    <div class="layout__lang-slider">
+      <img [alt]="'english' | translate"
+           src="assets/images/english.png">
+      <mat-slide-toggle [formControl]="langControl"
+                        (change)="changeLanguage($event.checked)">
+      </mat-slide-toggle>
+      <img [alt]="'french' | translate"
+           src="assets/images/french.png">
+    </div>
+  </div>
+</mat-toolbar>
+<main class="layout__content">
+  <ng-content></ng-content>
+</main>

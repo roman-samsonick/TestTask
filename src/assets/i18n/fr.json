@@ -1,0 +1,25 @@
+{
+  "username": "Username",
+  "role": "Role",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "age": "Age",
+  "actions": "Actions",
+  "createUser": "Create user",
+  "clickOnImageToChange": "Click on image to change it",
+  "institution": "Institution",
+  "speciality": "Speciality",
+  "saveChanges": "Save changes",
+  "cancelChanges": "Cancel changes",
+  "editUserTitle": "Edit user information",
+  "createUserTitle": "Create user",
+  "inputEducationStartDate": "Education started at",
+  "inputEducationEndDate": "Education finished at",
+  "login": "Login",
+  "clickToSeeDetails": "Click to see the details",
+  "loginTitle": "Please, log in to continue",
+  "errors": {
+    "required": "Field is required",
+    "minLength": "Field is required"
+  }
+}

@@ -1,0 +1,70 @@
+<mat-card *ngIf="user">
+  <div class="user-details__primary-info">
+    <img class="user-details__avatar"
+         [src]="user.image"
+         [alt]="user.firstName">
+
+    <div class="user-details__primary-info-fields">
+      <div class="user-details__field">
+        <mat-icon>
+          badge
+        </mat-icon>
+
+        {{user.firstName}}
+      </div>
+
+      <div class="user-details__field">
+        <mat-icon>
+          family_restroom
+        </mat-icon>
+
+        {{user.lastName}}
+      </div>
+
+      <div class="user-details__field">
+        <mat-icon>
+          timer
+        </mat-icon>
+
+        {{user.age}}
+        {{ 'yearsOld' | translate }}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="user-details__institutes-title">
+    {{ 'institutes' | translate }}:
+  </div>
+
+  <mat-card class="user-details__institute"
+            *ngFor="let education of user.education">
+    <div class="user-details__field">
+      <mat-icon>
+        account_balance
+      </mat-icon>
+
+      {{education.name}}
+    </div>
+
+    <div class="user-details__field">
+      <mat-icon class="user-details__institute-date-range-icon">
+        date_range
+      </mat-icon>
+
+      <div>
+        {{ education.to | date : 'shortDate' }} - {{ education.from | date : 'shortDate' }}
+      </div>
+    </div>
+
+    <div class="user-details__field">
+      <mat-icon>
+        school
+      </mat-icon>
+
+      {{education.speciality}}
+    </div>
+  </mat-card>
+
+
+</mat-card>

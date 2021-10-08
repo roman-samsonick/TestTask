@@ -1,0 +1,144 @@
+<mat-card class="user-form">
+  <div class="user-form__title">
+    {{ title | translate }}
+  </div>
+
+  <img (click)="openFileDialog()"
+       class="user-form__image-element"
+       [src]="imageControl.value"
+       alt="Click to change image">
+  <input #imageInput
+         class="user-form__image-input"
+         type="file">
+
+  <div class="user-form__image-tip">
+    <mat-icon>
+      touch_app
+    </mat-icon>
+    {{ 'clickOnImageToChange' | translate }}
+  </div>
+
+  <div class="user-form__field-row">
+    <app-form-field [title]="'username' | translate"
+                    suffixIcon="person"
+                    [placeholder]="'username' | translate"
+                    [control]="usernameControl"></app-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>
+        {{'role' | translate}}
+      </mat-label>
+      <mat-select [formControl]="roleControl">
+        <mat-option value="admin">
+          {{ 'admin' | translate }}
+        </mat-option>
+        <mat-option value="user">
+          {{ 'user' | translate }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matSuffix>
+        admin_panel_settings
+      </mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="user-form__field-row">
+    <app-form-field suffixIcon="badge"
+                    [title]="'firstName' | translate"
+                    [placeholder]="'firstName' | translate"
+                    [control]="firstNameControl"></app-form-field>
+
+    <app-form-field suffixIcon="family_restroom"
+                    [title]="'lastName' | translate"
+                    [placeholder]="'lastName' | translate"
+                    [control]="lastNameControl"></app-form-field>
+  </div>
+
+
+  <app-form-field type="number"
+                  suffixIcon="timer"
+                  [title]="'age' | translate"
+                  [placeholder]="'age' | translate"
+                  [control]="ageControl"></app-form-field>
+
+  <mat-card *ngFor="let education of educationControl.controls; index as index"
+            class="user-form__education-institute">
+    <mat-icon (click)="removeEducationItem(index)"
+              class="user-form__education-institute-remove-button">
+      close
+    </mat-icon>
+
+    <app-form-field [title]="'institution' | translate"
+                    suffixIcon="account_balance"
+                    [placeholder]="'institution' | translate"
+                    [control]="getEducationControlByName(index, 'name')"></app-form-field>
+
+    <div class="user-form__field-row">
+      <mat-form-field appearance="outline">
+        <mat-label>
+          {{ 'inputEducationStartDate' | translate }}
+        </mat-label>
+        <input matInput
+               readonly
+               [formControl]="getEducationControlByName(index, 'from')"
+               [matDatepicker]="datepickerFrom">
+        <mat-datepicker-toggle matSuffix
+                               [for]="datepickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerFrom></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>
+          {{ 'inputEducationEndDate' | translate }}
+        </mat-label>
+        <input matInput
+               readonly
+               [min]="getEducationControlByName(index, 'from').value"
+               [max]="now"
+               [formControl]="getEducationControlByName(index, 'to')"
+               [matDatepicker]="datepickerTo">
+        <mat-datepicker-toggle matSuffix
+                               [for]="datepickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <app-form-field suffixIcon="school"
+                    [title]="'speciality' | translate"
+                    [placeholder]="'speciality' | translate"
+                    [control]="getEducationControlByName(index, 'speciality')"></app-form-field>
+  </mat-card>
+
+  <mat-card (click)="addEducationItem()"
+            class="user-form__append"
+            matRipple>
+    <mat-icon>
+      add
+    </mat-icon>
+    <mat-icon>
+      account_balance
+    </mat-icon>
+  </mat-card>
+
+  <div class="user-form__save-button">
+    <button (click)="saveUser()"
+            [title]="'saveChanges' | translate"
+            mat-stroked-button
+            color="accent">
+      <mat-icon>
+        done
+      </mat-icon>
+    </button>
+
+    <button [title]="'cancelChanges' | translate"
+            mat-stroked-button
+            color="accent">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </div>
+
+
+
+</mat-card>
